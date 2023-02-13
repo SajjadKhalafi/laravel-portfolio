@@ -1,264 +1,61 @@
+<!-- ====== Portfolio Section Start -->
 <section
+  id="portfolio"
   x-data="
         {
-          showCards: 'all',
+          selectedTab: 'all',
           activeClasses: 'bg-primary text-white',
           inactiveClasses: 'text-body-color hover:bg-primary hover:text-white',
         }
       "
-  class="pt-20 pb-12 lg:pt-[120px] lg:pb-[90px] bg-white dark:bg-slate-800"
+  class="pt-20 lg:pt-[120px] pb-12 lg:pb-[90px]"
 >
-  <div class="container mx-auto">
-    <div class="-mx-4 flex flex-wrap">
+  <div class="container">
+    <div class="flex flex-wrap -mx-4">
       <div class="w-full px-4">
-        <div class="mx-auto mb-[60px] max-w-[510px] text-center">
-              <span class="mb-2 block text-lg font-semibold text-primary">
-                Our Portfolio
-              </span>
-          <h2
-            class="mb-4 text-3xl font-bold text-dark sm:text-4xl md:text-[40px]"
-          >
-            Our Recent Projects
+        <div class="text-center mx-auto mb-[60px] max-w-[510px]">
+          <h2 class="font-bold text-3xl sm:text-4xl md:text-[40px] text-dark dark:text-gray-300 mb-4">
+            My Recent Projects
           </h2>
           <p class="text-base text-body-color">
-            There are many variations of passages of Lorem Ipsum available
-            but the majority have suffered alteration in some form.
+            You learn most by building projects. Go ahead and build something right now.
           </p>
         </div>
       </div>
     </div>
-    <div class="-mx-4 flex flex-wrap justify-center">
+    <div class="flex flex-wrap justify-center -mx-4">
       <div class="w-full px-4">
-        <ul class="mb-12 flex flex-wrap justify-center space-x-1">
+        <ul class="flex flex-wrap justify-center mb-12 space-x-1">
           <li class="mb-1">
             <button
-              @click="showCards = 'all' "
-              :class="showCards == 'all' ? activeClasses : inactiveClasses "
-              class="inline-block rounded-lg py-2 px-5 text-center text-base font-semibold transition md:py-3 lg:px-8"
+              @click="selectedTab = 'all' "
+              :class="selectedTab == 'all' ? activeClasses : inactiveClasses "
+              class="inline-block py-2 md:py-3 px-5 lg:px-8 rounded-lg text-base font-semibold text-center transition "
             >
               All Projects
             </button>
           </li>
-          <li class="mb-1">
-            <button
-              @click="showCards = 'branding' "
-              :class="showCards == 'branding' ? activeClasses : inactiveClasses "
-              class="inline-block rounded-lg py-2 px-5 text-center text-base font-semibold transition md:py-3 lg:px-8"
-            >
-              Branding
-            </button>
-          </li>
-          <li class="mb-1">
-            <button
-              @click="showCards = 'design' "
-              :class="showCards == 'design' ? activeClasses : inactiveClasses "
-              class="inline-block rounded-lg py-2 px-5 text-center text-base font-semibold transition md:py-3 lg:px-8"
-            >
-              Design
-            </button>
-          </li>
-          <li class="mb-1">
-            <button
-              @click="showCards = 'marketing' "
-              :class="showCards == 'marketing' ? activeClasses : inactiveClasses "
-              class="inline-block rounded-lg py-2 px-5 text-center text-base font-semibold transition md:py-3 lg:px-8"
-            >
-              Marketing
-            </button>
-          </li>
-          <li class="mb-1">
-            <button
-              @click="showCards = 'development' "
-              :class="showCards == 'development' ? activeClasses : inactiveClasses "
-              class="inline-block rounded-lg py-2 px-5 text-center text-base font-semibold transition md:py-3 lg:px-8"
-            >
-              Development
-            </button>
-          </li>
+          @foreach($tabs as $tab)
+            <li class="mb-1">
+              <button
+                @click="selectedTab = '{{$tab}}' "
+                :class="selectedTab === '{{$tab}}' ? activeClasses : inactiveClasses "
+                class="inline-block py-2 md:py-3 px-5 lg:px-8 rounded-lg text-base font-semibold text-center transition ">
+                {{$tab}}
+              </button>
+            </li>
+          @endforeach
         </ul>
       </div>
     </div>
-    <div class="-mx-4 flex flex-wrap">
-      <div
-        :class="showCards == 'all' || showCards == 'branding' ? 'block' : 'hidden' "
-        class="w-full px-4 md:w-1/2 xl:w-1/3"
-      >
-        <div class="relative mb-12">
-          <div class="overflow-hidden rounded-lg">
-            <img
-              src="assets/images/portfolio/portfolio-01/image-01.jpg"
-              alt="portfolio"
-              class="w-full"
-            />
-          </div>
-          <div
-            class="relative z-10 mx-7 -mt-20 rounded-lg bg-white py-9 px-3 text-center shadow-lg"
-          >
-                <span class="mb-2 block text-sm font-semibold text-primary">
-                  Branding
-                </span>
-            <h3 class="mb-4 text-xl font-bold text-dark">
-              Branding Design
-            </h3>
-            <a
-              href="javascript:void(0)"
-              class="inline-block rounded-md border py-3 px-7 text-sm font-semibold text-body-color transition hover:border-primary hover:bg-primary hover:text-white"
-            >
-              View Details
-            </a>
-          </div>
-        </div>
-      </div>
-      <div
-        :class="showCards == 'all' || showCards == 'marketing' ? 'block' : 'hidden' "
-        class="w-full px-4 md:w-1/2 xl:w-1/3"
-      >
-        <div class="relative mb-12">
-          <div class="overflow-hidden rounded-lg">
-            <img
-              src="assets/images/portfolio/portfolio-01/image-02.jpg"
-              alt="portfolio"
-              class="w-full"
-            />
-          </div>
-          <div
-            class="relative z-10 mx-7 -mt-20 rounded-lg bg-white py-9 px-3 text-center shadow-lg"
-          >
-                <span class="mb-2 block text-sm font-semibold text-primary">
-                  Marketing
-                </span>
-            <h3 class="mb-4 text-xl font-bold text-dark">
-              Best Marketing tips
-            </h3>
-            <a
-              href="javascript:void(0)"
-              class="inline-block rounded-md border py-3 px-7 text-sm font-semibold text-body-color transition hover:border-primary hover:bg-primary hover:text-white"
-            >
-              View Details
-            </a>
-          </div>
-        </div>
-      </div>
-      <div
-        :class="showCards == 'all' || showCards == 'development' ? 'block' : 'hidden' "
-        class="w-full px-4 md:w-1/2 xl:w-1/3"
-      >
-        <div class="relative mb-12">
-          <div class="overflow-hidden rounded-lg">
-            <img
-              src="assets/images/portfolio/portfolio-01/image-03.jpg"
-              alt="portfolio"
-              class="w-full"
-            />
-          </div>
-          <div
-            class="relative z-10 mx-7 -mt-20 rounded-lg bg-white py-9 px-3 text-center shadow-lg"
-          >
-                <span class="mb-2 block text-sm font-semibold text-primary">
-                  Development
-                </span>
-            <h3 class="mb-4 text-xl font-bold text-dark">
-              Web Design Trend
-            </h3>
-            <a
-              href="javascript:void(0)"
-              class="inline-block rounded-md border py-3 px-7 text-sm font-semibold text-body-color transition hover:border-primary hover:bg-primary hover:text-white"
-            >
-              View Details
-            </a>
-          </div>
-        </div>
-      </div>
-      <div
-        :class="showCards == 'all' || showCards == 'design' ? 'block' : 'hidden' "
-        class="w-full px-4 md:w-1/2 xl:w-1/3"
-      >
-        <div class="relative mb-12">
-          <div class="overflow-hidden rounded-lg">
-            <img
-              src="assets/images/portfolio/portfolio-01/image-04.jpg"
-              alt="portfolio"
-              class="w-full"
-            />
-          </div>
-          <div
-            class="relative z-10 mx-7 -mt-20 rounded-lg bg-white py-9 px-3 text-center shadow-lg"
-          >
-                <span class="mb-2 block text-sm font-semibold text-primary">
-                  Design
-                </span>
-            <h3 class="mb-4 text-xl font-bold text-dark">
-              Business Card Design
-            </h3>
-            <a
-              href="javascript:void(0)"
-              class="inline-block rounded-md border py-3 px-7 text-sm font-semibold text-body-color transition hover:border-primary hover:bg-primary hover:text-white"
-            >
-              View Details
-            </a>
-          </div>
-        </div>
-      </div>
-      <div
-        :class="showCards == 'all' || showCards == 'marketing' ? 'block' : 'hidden' "
-        class="w-full px-4 md:w-1/2 xl:w-1/3"
-      >
-        <div class="relative mb-12">
-          <div class="overflow-hidden rounded-lg">
-            <img
-              src="assets/images/portfolio/portfolio-01/image-05.jpg"
-              alt="portfolio"
-              class="w-full"
-            />
-          </div>
-          <div
-            class="relative z-10 mx-7 -mt-20 rounded-lg bg-white py-9 px-3 text-center shadow-lg"
-          >
-                <span class="mb-2 block text-sm font-semibold text-primary">
-                  Marketing
-                </span>
-            <h3 class="mb-4 text-xl font-bold text-dark">
-              Digital marketing
-            </h3>
-            <a
-              href="javascript:void(0)"
-              class="inline-block rounded-md border py-3 px-7 text-sm font-semibold text-body-color transition hover:border-primary hover:bg-primary hover:text-white"
-            >
-              View Details
-            </a>
-          </div>
-        </div>
-      </div>
-      <div
-        :class="showCards == 'all' || showCards == 'branding' ? 'block' : 'hidden' "
-        class="w-full px-4 md:w-1/2 xl:w-1/3"
-      >
-        <div class="relative mb-12">
-          <div class="overflow-hidden rounded-lg">
-            <img
-              src="assets/images/portfolio/portfolio-01/image-06.jpg"
-              alt="portfolio"
-              class="w-full"
-            />
-          </div>
-          <div
-            class="relative z-10 mx-7 -mt-20 rounded-lg bg-white py-9 px-3 text-center shadow-lg"
-          >
-                <span class="mb-2 block text-sm font-semibold text-primary">
-                  Branding
-                </span>
-            <h3 class="mb-4 text-xl font-bold text-dark">
-              Creative Agency
-            </h3>
-            <a
-              href="javascript:void(0)"
-              class="inline-block rounded-md border py-3 px-7 text-sm font-semibold text-body-color transition hover:border-primary hover:bg-primary hover:text-white"
-            >
-              View Details
-            </a>
-          </div>
-        </div>
-      </div>
+    <div class="flex flex-wrap -mx-4">
+      @foreach ($items as $item)
+        <x-portfolio-item :title="$item['title']"
+                          :categories="$item['category']"
+                          :image="$item['image']"
+                          :github="$item['github']"></x-portfolio-item>
+      @endforeach
     </div>
   </div>
 </section>
+<!-- ====== Portfolio Section End -->

@@ -61,10 +61,10 @@
               errors: {},
               successMessage: '',
 
-              submitForm(event) {
+              submitForm() {
                 this.successMessage = '';
                 this.errors = {};
-                  fetch(`/contact/submit`, {
+                  fetch(`http://127.0.0.1:8000/contact/submit`, {
                     method: 'POST',
                     headers: {
                       'Content-Type': 'application/json',
